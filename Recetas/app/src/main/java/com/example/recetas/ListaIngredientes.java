@@ -44,7 +44,7 @@ public class ListaIngredientes extends RecyclerView.Adapter<ListaIngredientes.My
         holder.checkIngrediente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(myContext, "Checkbox " + position + " click!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(myContext, "Pulsado el ingrediente número " + position, Toast.LENGTH_SHORT).show();
                 if (listaIngredientes.get(position).getSelected()) {
                     listaIngredientes.get(position).setSelected(false);
                     checkedIngredientes.remove(listaIngredientes.get(position));

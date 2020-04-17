@@ -6,7 +6,7 @@ public class Ingrediente {
     private String nombre;
     private boolean selected;
 
-    private Ingrediente(String nombre) {
+    public Ingrediente(String nombre) {
         this.nombre = nombre;
         this.selected = false;
     }

@@ -1,5 +1,6 @@
 package com.example.recetas;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -39,8 +40,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // TODO Realizar la búsqueda de las recetas con los ingredientes que hay en adapterListaIngredientes.getCheckedIngredientes()
-                Snackbar.make(view, "Longitud: " + adapterListaIngredientes.getCheckedIngredientes().size(), Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Número de ingredientes seleccionados: " + adapterListaIngredientes.getCheckedIngredientes().size(), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+                Intent intentListRecetas = new Intent(MainActivity.this, ActivityListaRecetas.class);
+                MainActivity.this.startActivity(intentListRecetas);
             }
         });
 

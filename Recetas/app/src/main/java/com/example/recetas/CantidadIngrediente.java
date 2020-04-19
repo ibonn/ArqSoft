@@ -4,10 +4,12 @@ import android.annotation.SuppressLint;
 
 import androidx.annotation.NonNull;
 
-public class CantidadIngrediente {
+import java.io.Serializable;
+
+public class CantidadIngrediente implements Serializable {
 
     private Ingrediente ingrediente;    // El ingrediente
-    private int cantidad;               // Cantidad
+    protected int cantidad;               // Cantidad
     private String unidad;              // Unidad si la hay (gramos, cucharadas, tazas...)
 
     public CantidadIngrediente(Ingrediente ingrediente, int cantidad) {
@@ -20,6 +22,19 @@ public class CantidadIngrediente {
         this.ingrediente = ingrediente;
         this.cantidad = cantidad;
         this.unidad = unidad;
+    }
+
+    public Ingrediente getIngrediente() {
+        return ingrediente;
+    }
+
+    public String getCantidad() {
+        if (this.unidad == null) {
+            return String.format("%d", this.cantidad);
+        }
+        else {
+            return String.format("%d %s", this.cantidad, this.unidad);
+        }
     }
 
     @SuppressLint("DefaultLocale")

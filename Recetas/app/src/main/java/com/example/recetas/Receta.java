@@ -8,18 +8,21 @@ import android.graphics.Color;
 import android.graphics.Paint;
 
 import java.io.ByteArrayOutputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 
-public class Receta {
+public class Receta implements Serializable {
 
-    private String id;                          // Identificador de la receta
-    private String nombre;                      // Nombre de la receta
-    private byte[] imagen;                      // Imagen de la receta
-    private int duracionMinutos;                // Tiempo de preparación en minutos
-    private int numeroPersonas;                 // Número de personas
-    private CantidadIngrediente[] ingredientes; // Lista de ingredientes con sus cantidades
-private String pasosReceta;                     // Texto de la receta
+    private String id;                              // Identificador de la receta
+    private String nombre;                          // Nombre de la receta
+    private byte[] imagen;                          // Imagen de la receta
+    private int duracionMinutos;                    // Tiempo de preparación en minutos
+    private int numeroPersonas;                     // Número de personas
+    private List<CantidadIngrediente> ingredientes; // Lista de ingredientes con sus cantidades
+private String pasosReceta;                         // Texto de la receta
 
     public Receta(String id) {
         // TODO cargar receta de la base de datos
@@ -39,11 +42,22 @@ private String pasosReceta;                     // Texto de la receta
         Random r = new Random();
         this.duracionMinutos = r.nextInt(120) + 10;
         this.numeroPersonas = r.nextInt(3) + 1;
-        this.ingredientes = new CantidadIngrediente[5];
-        for (int i = 0; i < 5; i++) {
-            this.ingredientes[i] = new CantidadIngrediente(new Ingrediente("Ingrediente de prueba " + i), 6 - i);
+        this.ingredientes = new ArrayList<>();
+        int numIngredientes = r.nextInt(10) + 5;
+        for (int i = 0; i < numIngredientes; i++) {
+            this.ingredientes.add(new CantidadIngrediente(new Ingrediente("Ingrediente de prueba " + i, null), numIngredientes - i));
         }
         this.pasosReceta = "Pasos para preparar una deliciosa receta de prueba";
+    }
+
+    private Receta(Receta r) {
+        this.id = r.id;
+        this.nombre = r.nombre;
+        this.imagen = r.imagen;
+        this.duracionMinutos = r.duracionMinutos;
+        this.numeroPersonas = r.numeroPersonas;
+        this.ingredientes = r.ingredientes;
+        this.pasosReceta = r.pasosReceta;
     }
 
     /**
@@ -56,10 +70,10 @@ private String pasosReceta;                     // Texto de la receta
 
     /**
      * Devuelve la foto de la receta
-     * @return Lista de bytes, deberá ser transfomada a Bitmap
+     * @return Bitmap
      */
-    public byte[] getImagen() {
-        return imagen;
+    public Bitmap getImagen() {
+        return BitmapFactory.decodeByteArray(imagen, 0, imagen.length);
     }
 
     /**
@@ -79,7 +93,7 @@ private String pasosReceta;                     // Texto de la receta
      * Obtiene la lista de ingredientes con sus cantidades
      * @return Lista de CantidadIngrediente
      */
-    public CantidadIngrediente[] getIngredientes() {
+    public List<CantidadIngrediente> getIngredientes() {
         return ingredientes;
     }
 
@@ -127,5 +141,21 @@ private String pasosReceta;                     // Texto de la receta
                 }
             }
         }
+    }
+
+    public Receta modificarProporciones(int numeroPersonas) {
+        Receta r = new Receta(this);
+        r.numeroPersonas = numeroPersonas;
+        r.ingredientes = new ArrayList<>();
+
+        for (CantidadIngrediente c : this.ingredientes) {
+            r.ingredientes.add(
+                    new CantidadIngrediente(
+                            c.getIngrediente(),
+                            numeroPersonas * c.cantidad / this.numeroPersonas)
+            );
+        }
+
+        return r;
     }
 }

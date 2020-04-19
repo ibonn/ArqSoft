@@ -39,11 +39,17 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO Realizar la búsqueda de las recetas con los ingredientes que hay en adapterListaIngredientes.getCheckedIngredientes()
-                Snackbar.make(view, "Número de ingredientes seleccionados: " + adapterListaIngredientes.getCheckedIngredientes().size(), Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                Intent intentListRecetas = new Intent(MainActivity.this, ActivityListaRecetas.class);
-                MainActivity.this.startActivity(intentListRecetas);
+                int numIngredientes = adapterListaIngredientes.getCheckedIngredientes().size();
+                if (numIngredientes == 0) {
+                    Snackbar.make(view, R.string.selecciona_ingredientes, Snackbar.LENGTH_LONG).show();
+                }
+                else {
+                    // TODO Realizar la búsqueda de las recetas con los ingredientes que hay en adapterListaIngredientes.getCheckedIngredientes()
+                    Snackbar.make(view, "Número de ingredientes seleccionados: " + numIngredientes, Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                    Intent intentListRecetas = new Intent(MainActivity.this, ActivityListaRecetas.class);
+                    MainActivity.this.startActivity(intentListRecetas);
+                }
             }
         });
 

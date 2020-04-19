@@ -1,6 +1,7 @@
 package com.example.recetas;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
@@ -38,7 +39,11 @@ public class ListaRecetasAdapter extends RecyclerView.Adapter<ListaRecetasAdapte
             public void onClick(View v) {
                 int itemPosition = recyclerView.getChildLayoutPosition(v);
                 Receta receta = mData.get(itemPosition);
-                Toast.makeText(mContext, receta.getNombre() + " pulsada", Toast.LENGTH_LONG).show();
+
+                // Mostrar activity_receta
+                Intent intent = new Intent(mContext, ActivityReceta.class);
+                intent.putExtra("receta", receta); // Pasar la receta a activity_receta
+                mContext.startActivity(intent);
             }
         });
         return new MyViewHolder(v);
@@ -46,11 +51,7 @@ public class ListaRecetasAdapter extends RecyclerView.Adapter<ListaRecetasAdapte
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        byte[] foto = mData.get(position).getImagen();
-        Bitmap fotoBmp = BitmapFactory.decodeByteArray(foto, 0, foto.length);
-
-        holder.imagen.setImageBitmap(fotoBmp);
-
+        holder.imagen.setImageBitmap(mData.get(position).getImagen());
         holder.nombreReceta.setText(mData.get(position).getNombre());
         holder.duracion.setText(mData.get(position).getTiempoPreparacion());
         holder.numPersonas.setText(mData.get(position).getNumeroPersonas());

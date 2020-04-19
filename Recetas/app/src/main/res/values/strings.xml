@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Recetas</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Ajustes</string>
+    <string name="selecciona_ingredientes">Debes seleccionar al menos un ingrediente para poder realizar una búsqueda</string>
+    <string name="ingredientes">Ingredientes</string>
+    <string name="preparacion">Preparación</string>
+    <string name="ajustar_proporcion">Ajustar para</string>
+    <string name="comensales">comensales</string>
+    <string name="aceptar">Aceptar</string>
 </resources>

@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,10 +20,12 @@ public class ListaRecetasAdapter extends RecyclerView.Adapter<ListaRecetasAdapte
 
     Context mContext;
     List<Receta> mData;
+    RecyclerView recyclerView;
 
-    public ListaRecetasAdapter(Context mContext, List<Receta> mData) {
+    public ListaRecetasAdapter(Context mContext, List<Receta> mData, RecyclerView recyclerView) {
         this.mContext = mContext;
         this.mData = mData;
+        this.recyclerView = recyclerView;
     }
 
     @NonNull
@@ -30,33 +33,27 @@ public class ListaRecetasAdapter extends RecyclerView.Adapter<ListaRecetasAdapte
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View v = inflater.inflate(R.layout.tarjeta_receta, parent, false);
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int itemPosition = recyclerView.getChildLayoutPosition(v);
+                Receta receta = mData.get(itemPosition);
+                Toast.makeText(mContext, receta.getNombre() + " pulsada", Toast.LENGTH_LONG).show();
+            }
+        });
         return new MyViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        // TODO añadir imagen (descomentar lo de abajo)
-        /*byte[] foto = mData.get(position).getImagen();
+        byte[] foto = mData.get(position).getImagen();
         Bitmap fotoBmp = BitmapFactory.decodeByteArray(foto, 0, foto.length);
 
-        holder.imagen.setImageBitmap(Bitmap.createScaledBitmap(
-                fotoBmp,
-                holder.imagen.getWidth(),
-                holder.imagen.getHeight(),
-                false
-        ));*/
+        holder.imagen.setImageBitmap(fotoBmp);
 
         holder.nombreReceta.setText(mData.get(position).getNombre());
         holder.duracion.setText(mData.get(position).getTiempoPreparacion());
         holder.numPersonas.setText(mData.get(position).getNumeroPersonas());
-        /*holder.botonVerMapa.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO cargar la ruta
-                // mostrar la ruta en el mapa
-                // TODO cambiar a la pestaña de mapa
-            }
-        });*/
     }
 
     @Override

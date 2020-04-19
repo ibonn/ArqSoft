@@ -4,69 +4,69 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content" android:orientation="horizontal">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ImageView
+        android:id="@+id/imagen"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:id="@+id/imagen"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
-
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
         <TextView
             android:id="@+id/nombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="TextView"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintStart_toEndOf="@+id/imagen"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:text="nombre_receta"
+            android:padding="10dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-        <ImageView
-            android:id="@+id/imagen_tiempo"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"
-            app:layout_constraintStart_toEndOf="@+id/imagen"
-            app:layout_constraintTop_toBottomOf="@+id/nombre"
-            app:srcCompat="@drawable/ic_access_time_black_24dp" />
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <ImageView
+                    android:id="@+id/imagen_tiempo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="2dp"
+                    app:srcCompat="@drawable/ic_access_time_black_24dp" />
+                <TextView
+                    android:id="@+id/duracion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
 
-        <ImageView
-            android:id="@+id/imagen_comensales"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"
-            app:layout_constraintStart_toEndOf="@+id/imagen"
-            app:layout_constraintTop_toBottomOf="@+id/imagen_tiempo"
-            app:srcCompat="@drawable/ic_group_black_24dp" />
+                    android:text="duracion_receta" />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/duracion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="52dp"
-            android:text="TextView"
-            app:layout_constraintStart_toEndOf="@+id/imagen_tiempo"
-            app:layout_constraintTop_toTopOf="parent" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <ImageView
+                    android:id="@+id/imagen_comensales"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="2dp"
+                    app:srcCompat="@drawable/ic_group_black_24dp" />
 
-        <TextView
-            android:id="@+id/num_personas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="88dp"
-            android:text="TextView"
-            app:layout_constraintStart_toEndOf="@+id/imagen_comensales"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/num_personas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="num_comensales" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
 </LinearLayout>

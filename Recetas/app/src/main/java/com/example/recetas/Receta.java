@@ -1,6 +1,15 @@
 package com.example.recetas;
 
+import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+
+import java.io.ByteArrayOutputStream;
+import java.util.Random;
+
 
 public class Receta {
 
@@ -16,9 +25,20 @@ private String pasosReceta;                     // Texto de la receta
         // TODO cargar receta de la base de datos
         this.id = id;
         this.nombre = "Receta de prueba";
-        this.imagen = null;
-        this.duracionMinutos = 78;
-        this.numeroPersonas = 4;
+        Bitmap.Config conf = Bitmap.Config.ARGB_8888;
+        Bitmap bmp = Bitmap.createBitmap(50, 50, conf);
+        Canvas canvas = new Canvas(bmp);
+        canvas.drawColor(Color.RED);
+        Paint paint = new Paint();
+        paint.setStyle(Paint.Style.FILL);
+        paint.setColor(Color.WHITE);
+        canvas.drawCircle(25,25, 25, paint);
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.JPEG, 70, stream);
+        this.imagen = stream.toByteArray();
+        Random r = new Random();
+        this.duracionMinutos = r.nextInt(120) + 10;
+        this.numeroPersonas = r.nextInt(3) + 1;
         this.ingredientes = new CantidadIngrediente[5];
         for (int i = 0; i < 5; i++) {
             this.ingredientes[i] = new CantidadIngrediente(new Ingrediente("Ingrediente de prueba " + i), 6 - i);

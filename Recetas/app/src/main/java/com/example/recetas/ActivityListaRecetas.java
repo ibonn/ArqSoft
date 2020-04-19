@@ -29,7 +29,7 @@ public class ActivityListaRecetas extends AppCompatActivity {
             listaRecetas.add(new Receta("idReceta"));
         }
 
-        ListaRecetasAdapter listaRecetasAdapter = new ListaRecetasAdapter(this, listaRecetas);
+        ListaRecetasAdapter listaRecetasAdapter = new ListaRecetasAdapter(this, listaRecetas, recyclerRecetas);
         LinearLayoutManager manager = new LinearLayoutManager(this);
 
         recyclerRecetas.setLayoutManager(manager);

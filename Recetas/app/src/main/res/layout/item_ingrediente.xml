@@ -10,11 +10,11 @@
         android:layout_height="match_parent"
         android:padding="10dp">
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imagen_ingrediente"
             android:layout_width="56dp"
             android:layout_height="56dp"
-            android:background="@drawable/imagen_redonda" />
+            app:shapeAppearanceOverlay="@style/circleImageViewStyle" />
 
         <CheckBox
             android:id="@+id/check_ingrediente"

@@ -40,8 +40,7 @@ public class ListaIngredientesAdapter extends RecyclerView.Adapter<ListaIngredie
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
         // Rellenar los campos de la tarjeta de ingrediente con los valores correspondientes
-        // TODO descomentar la línea de abajo
-        // holder.imagenIngrediente.setImageBitmap(listaIngredientes.get(position).getImagen());
+        holder.imagenIngrediente.setImageBitmap(listaIngredientes.get(position).getImagen());
         holder.checkIngrediente.setText(listaIngredientes.get(position).getNombre());
         holder.checkIngrediente.setOnClickListener(new View.OnClickListener() {
             @Override

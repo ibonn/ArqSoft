@@ -29,13 +29,16 @@ private String pasosReceta;                         // Texto de la receta
         this.id = id;
         this.nombre = "Receta de prueba";
         Bitmap.Config conf = Bitmap.Config.ARGB_8888;
-        Bitmap bmp = Bitmap.createBitmap(50, 50, conf);
+        Bitmap bmp = Bitmap.createBitmap(200, 200, conf);
         Canvas canvas = new Canvas(bmp);
         canvas.drawColor(Color.RED);
         Paint paint = new Paint();
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(Color.WHITE);
-        canvas.drawCircle(25,25, 25, paint);
+        canvas.drawCircle(100,100, 100, paint);
+        paint.setColor(Color.BLACK);
+        paint.setTextSize(20);
+        canvas.drawText("Imagen\nreceta", 10, 100, paint);
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bmp.compress(Bitmap.CompressFormat.JPEG, 70, stream);
         this.imagen = stream.toByteArray();
@@ -45,7 +48,7 @@ private String pasosReceta;                         // Texto de la receta
         this.ingredientes = new ArrayList<>();
         int numIngredientes = r.nextInt(10) + 5;
         for (int i = 0; i < numIngredientes; i++) {
-            this.ingredientes.add(new CantidadIngrediente(new Ingrediente("Ingrediente de prueba " + i, null), numIngredientes - i));
+            this.ingredientes.add(new CantidadIngrediente(new Ingrediente("Ingrediente de prueba " + i, null), numIngredientes - i, "gramos"));
         }
         this.pasosReceta = "Pasos para preparar una deliciosa receta de prueba";
     }

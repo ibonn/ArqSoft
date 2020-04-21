@@ -14,12 +14,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListaIngredientes extends RecyclerView.Adapter<ListaIngredientes.MyViewHolder> {
+public class ListaIngredientesAdapter extends RecyclerView.Adapter<ListaIngredientesAdapter.MyViewHolder> {
     private Context myContext;
     private List<Ingrediente> listaIngredientes;
     private List<Ingrediente> checkedIngredientes;
 
-    public ListaIngredientes(Context myContext, List<Ingrediente> myData) {
+    public ListaIngredientesAdapter(Context myContext, List<Ingrediente> myData) {
         this.myContext = myContext;
         this.listaIngredientes = myData;
         this.checkedIngredientes = new ArrayList<>();

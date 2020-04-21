@@ -24,7 +24,7 @@ public class ActivityListaRecetas extends AppCompatActivity {
         RecyclerView recyclerRecetas = findViewById(R.id.lista_recetas);
         List<Receta> listaRecetas = new ArrayList<>();
 
-        // TODO cargar las recetas desde el servidor en función de los ingredientes seleccionados
+        // TODO cargar las recetas desde el servidor en función del tiempo máximo y los ingredientes seleccionados
         for (int i = 0; i < 10; i++) {
             listaRecetas.add(new Receta("idReceta"));
         }

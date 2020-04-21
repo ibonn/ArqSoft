@@ -12,12 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.LinearLayout;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Cargar los ingredientes en la lista
         RecyclerView recyclerIngredientes = findViewById(R.id.lista_ingredientes);
-        final ListaIngredientes adapterListaIngredientes = new ListaIngredientes(this, Ingrediente.getIngredientes());
+        final ListaIngredientesAdapter adapterListaIngredientes = new ListaIngredientesAdapter(this, Ingrediente.getIngredientes());
         LinearLayoutManager manager = new LinearLayoutManager(this);
         recyclerIngredientes.setLayoutManager(manager);
         recyclerIngredientes.setAdapter(adapterListaIngredientes);
@@ -55,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    // TODO Eliminar junto con menu_main.xml si no se va a usar el menú
     /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

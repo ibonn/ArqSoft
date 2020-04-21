@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Recetas</string>
     <string name="action_settings">Ajustes</string>
+    <string name="tiempo_max">Tiempo máximo de preparación</string>
+    <string name="tiempo_max_defecto">10</string>
+    <string name="minutos">minutos</string>
     <string name="selecciona_ingredientes">Debes seleccionar al menos un ingrediente para poder realizar una búsqueda</string>
     <string name="ingredientes">Ingredientes</string>
     <string name="preparacion">Preparación</string>
